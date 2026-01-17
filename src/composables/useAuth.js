@@ -5,12 +5,10 @@ import { successToast, errorToast } from '@/utils/toast'
 
 export function useAuth() {
   const loading = ref(false)
-  const error = ref('')
   const authStore = useAuthStore()
 
   const login = async (data) => {
     loading.value = true
-    error.value = ''
     try {
       const res = await authService.login(data)
       authStore.loginSuccess(res.data.data.accessToken)
@@ -22,5 +20,5 @@ export function useAuth() {
     }
   }
 
-  return { loading, error, login }
+  return { loading, login }
 }
