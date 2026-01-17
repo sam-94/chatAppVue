@@ -18,11 +18,11 @@ import { useAuthStore } from '@/store/auth.store'
 const email = ref('')
 const password = ref('')
 const router = useRouter()
-const authStore = useAuthStore()
 const { loading, error, login } = useAuth()
 
 const submit = async () => {
   const success = await login({ email: email.value, password: password.value })
+  console.log(11, success)
   if (success) router.push('/dashboard')
 }
 </script>

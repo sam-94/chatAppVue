@@ -1,12 +1,12 @@
 import { ref } from 'vue'
 import { authService } from '@/services/auth.service'
 import { useAuthStore } from '@/store/auth.store'
+import { successToast, errorToast } from '@/utils/toast'
 
 export function useAuth() {
   const loading = ref(false)
   const error = ref('')
   const authStore = useAuthStore()
-
 
   const login = async (data) => {
     loading.value = true
@@ -14,12 +14,9 @@ export function useAuth() {
     try {
       const res = await authService.login(data)
       authStore.loginSuccess(res.data.data.accessToken)
-
-      return true
+      return successToast('Login successful')
     } catch (e) {
-      console.log(e.response);
-      error.value = e.response?.data.error || 'Login failed'
-      return false
+      errorToast(e.response?.data.error || 'Login failed')
     } finally {
       loading.value = false
     }
