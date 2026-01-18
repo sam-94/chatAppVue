@@ -32,7 +32,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
 import Loader from '@/components/common/Loader.vue'
-import { warningToast } from '@/utils/toast'
+import { successToast, warningToast } from '@/utils/toast'
 import '@/assets/auth.css'
 
 const email = ref('')
@@ -44,6 +44,8 @@ const handleLogin = async () => {
   if (!email.value) return warningToast('Email is required')
   if (!password.value) return warningToast('Password is required')
   const success = await login({ email: email.value, password: password.value })
-  if (success) router.push('/dashboard')
+  if (success) router.push('/dashboard').then(() => {
+    successToast('Logged in successfully')
+  })
 }
 </script>

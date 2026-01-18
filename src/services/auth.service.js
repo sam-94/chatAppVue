@@ -2,5 +2,6 @@ import api from '@/services/api'
 
 export const authService = {
   login: (data) => api.post('/auth/login', data),
-  register: (data) => api.post('/auth/register', data)
+  register: (data) => api.post('/auth/register', data),
+  logout: (userId) => api.post('/auth/logout', {userId})
 }

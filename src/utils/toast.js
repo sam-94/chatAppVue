@@ -2,7 +2,7 @@ import { toast } from 'vue3-toastify'
 
 const options = {
   position: 'top-right',
-  autoClose: 3000,
+  autoClose: 2000,
   pauseOnHover: true,
   closeOnClick: true,
 }

@@ -41,7 +41,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
 import Loader from '@/components/common/Loader.vue'
-import { warningToast } from '@/utils/toast'
+import { successToast, warningToast } from '@/utils/toast'
 import '@/assets/auth.css'
 
 const name = ref('')
@@ -65,6 +65,8 @@ const handleSignup = async () => {
         return warningToast('Passwords do not match')
     }
     const success = await register({ name: name.value, email: email.value, password: password.value })
-    if (success) router.push('/dashboard')
+    if (success) router.push('/dashboard').then(() => {
+        successToast('Registered successfully')
+    })
 }
 </script>
