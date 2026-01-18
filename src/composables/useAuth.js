@@ -24,7 +24,7 @@ export function useAuth() {
     loading.value = true
     try {
       const res = await authService.register(data)
-      // authStore.loginSuccess(res.data.data.accessToken)
+      authStore.loginSuccess(res.data.data.accessToken)
       return successToast('Registration successful')
     } catch (e) {
       errorToast(e.response?.data.error || 'Regisration failed')

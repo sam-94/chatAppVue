@@ -1,6 +1,6 @@
-import { loginApi, registerApi } from '@/api/auth'
+import api from '@/services/api'
 
 export const authService = {
-  login: (data) => loginApi(data),
-  register: (data) => registerApi(data)
+  login: (data) => api.post('/auth/login', data),
+  register: (data) => api.post('/auth/register', data)
 }
