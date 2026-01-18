@@ -3,7 +3,32 @@
 </template>
 
 <script setup>
-// App-level logic can go here later (theme, layout switching, etc.)
+import { onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const handleOffline = () => {
+  router.push('/offline')
+}
+
+const handleOnline = () => {
+  if (router.currentRoute.value.name === 'Offline') {
+    router.back()
+  }
+}
+
+onMounted(() => {
+  if (!navigator.onLine) handleOffline()
+
+  window.addEventListener('offline', handleOffline)
+  window.addEventListener('online', handleOnline)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('offline', handleOffline)
+  window.removeEventListener('online', handleOnline)
+})
 </script>
 
 <style>
