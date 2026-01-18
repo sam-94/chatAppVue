@@ -11,7 +11,7 @@ export function useAuth() {
     loading.value = true
     try {
       const res = await authService.login(data)
-      authStore.loginSuccess(res.data.data.accessToken)
+      authStore.setAuth(res.data.data)
       return successToast('Login successful')
     } catch (e) {
       errorToast(e.response?.data.error || 'Login failed')
@@ -24,7 +24,7 @@ export function useAuth() {
     loading.value = true
     try {
       const res = await authService.register(data)
-      authStore.loginSuccess(res.data.data.accessToken)
+      authStore.setAuth(res.data.data)
       return successToast('Registration successful')
     } catch (e) {
       errorToast(e.response?.data.error || 'Regisration failed')

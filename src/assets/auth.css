@@ -1,0 +1,99 @@
+:root {
+  --bg: #0f172a;
+  --card: #020617;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --border: #1e293b;
+  --primary: #6366f1;
+  --danger: #ef4444;
+}
+
+/* ✅ Scope everything under auth-container */
+.auth-container {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Card */
+.auth-card {
+  background: var(--card);
+  width: 360px;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+/* Headings */
+.auth-card h2 {
+  margin-bottom: 6px;
+}
+
+.auth-card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.auth-card .input-group {
+  margin-bottom: 14px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  outline: none;
+}
+
+.auth-card input::placeholder {
+  color: var(--muted);
+}
+
+.auth-card input:focus {
+  border-color: var(--primary);
+}
+
+/* Button (scoped, toaster safe) */
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.auth-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Errors */
+.auth-card .error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* Switch links */
+.auth-card .switch {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-card .switch a {
+  color: var(--primary);
+  text-decoration: none;
+}
