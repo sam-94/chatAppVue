@@ -7,7 +7,6 @@ import Offline from '@/views/Offline.vue'
 import { useAuthStore } from '@/store/auth.store'
 
 const routes = [
-  { path: '/', redirect: '/dashboard' },
   { 
     path: '/login', 
     component: LoginView,
@@ -19,7 +18,7 @@ const routes = [
     meta: { guestOnly: true }  
   },
   {
-    path: '/dashboard',
+    path: '/',
     component: DashboardView,
     meta: { requiresAuth: true }
   },
@@ -43,7 +42,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const auth = useAuthStore()
   if (to.meta.requiresAuth && !auth.isAuthenticated) next('/login')
-  else if (to.meta.guestOnly && auth.isAuthenticated) next('/dashboard')
+  else if (to.meta.guestOnly && auth.isAuthenticated) next('/')
   else next()
 })
 

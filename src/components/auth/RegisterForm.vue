@@ -65,7 +65,7 @@ const handleSignup = async () => {
         return warningToast('Passwords do not match')
     }
     const success = await register({ name: name.value, email: email.value, password: password.value })
-    if (success) router.push('/dashboard').then(() => {
+    if (success) router.push('/').then(() => {
         successToast('Registered successfully')
     })
 }

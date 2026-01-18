@@ -44,7 +44,7 @@ const handleLogin = async () => {
   if (!email.value) return warningToast('Email is required')
   if (!password.value) return warningToast('Password is required')
   const success = await login({ email: email.value, password: password.value })
-  if (success) router.push('/dashboard').then(() => {
+  if (success) router.push('/').then(() => {
     successToast('Logged in successfully')
   })
 }
