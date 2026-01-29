@@ -278,7 +278,54 @@ body {
    Responsive
 ========================= */
 @media (max-width: 768px) {
-  .sidebar {
-    display: none;
+  button.menu-btn {
+    width: 26px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 37px;
+}
+  .mobile-header {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  z-index: 1001;
+}
+
+  .chat-app {
+    padding-top: 56px;
   }
+
+  .sidebar {
+    position: fixed;
+    top: 56px;
+    left: -300px;
+    height: calc(100vh - 56px);
+    z-index: 1000;
+    transition: left 0.3s ease;
+    display: flex;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+}
+/* =========================
+   Mobile Overlay
+========================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }

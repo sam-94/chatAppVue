@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import { useAuthStore } from '@/store/auth.store'
 import { useRouter } from 'vue-router'
 import { authService } from '@/services/auth.service'
@@ -7,6 +8,12 @@ import { confirmLogout } from '@/utils/alert'
 
 const auth = useAuthStore()
 const router = useRouter()
+
+
+const isSidebarOpen = ref(false)
+const toggleSidebar = () => {
+  isSidebarOpen.value = !isSidebarOpen.value
+}
 
 const handleLogout = async() => {
     const result = await confirmLogout()
@@ -20,7 +27,18 @@ const handleLogout = async() => {
 </script>
 
 <template>
-  <aside class="sidebar">
+  <header class="mobile-header">
+  <button class="menu-btn" @click="toggleSidebar">☰</button>
+  <!-- <span class="title">{{ auth.user.name }}</span> -->
+</header>
+
+<div
+  v-if="isSidebarOpen"
+  class="overlay"
+  @click="toggleSidebar"
+></div>
+
+<aside :class="['sidebar', { open: isSidebarOpen }]">
 
     <!-- Logged-in User -->
     <div class="user-card" v-if="auth.user">
