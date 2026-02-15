@@ -277,6 +277,8 @@ body {
 /* =========================
    Responsive
 ========================= */
+/* Hide button for larger screens (>768px) */ 
+@media (min-width: 769px) { button.menu-btn { display: none; } }
 @media (max-width: 768px) {
   button.menu-btn {
     width: 26px;

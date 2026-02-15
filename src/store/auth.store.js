@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -25,6 +24,10 @@ export const useAuthStore = defineStore('auth', {
       localStorage.setItem('refreshToken', data.refreshToken)
       localStorage.setItem('user', JSON.stringify(this.user))
     },
+    setAccessToken(token) { 
+      this.accessToken = token 
+      localStorage.setItem('accessToken', token) 
+    },
     
     restore() {
       const accessToken = localStorage.getItem('accessToken')
@@ -40,9 +43,16 @@ export const useAuthStore = defineStore('auth', {
     },
 
     logout() {
-      localStorage.clear()
+      localStorage.removeItem('accessToken') 
+      localStorage.removeItem('refreshToken') 
+      localStorage.removeItem('user')
       this.user = null
+      this.accessToken = null 
+      this.refreshToken = null
       this.isAuthenticated = false
     },
+  },
+  getters: { 
+    isLoggedIn: (state) => state.isAuthenticated && !!state.accessToken, 
   }
 })
